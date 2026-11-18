@@ -1,16 +1,18 @@
-# React + Vite
+# Gasrechner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gasrechner is a small React app that estimates a gas bill from consumption in kilowatt-hours. Enter the kWh in the input field and the total updates as you type. The example rate is fixed at €0.26 per kWh, so 100 kWh gives an estimate of €26.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+With Node.js and npm installed, run the following commands from the project directory.
 
-## React Compiler
+```sh
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Open the local URL printed by Vite. Use `npm run build` to produce the production build.
 
-## Expanding the ESLint configuration
+## How the calculation works
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The [input form](src/components/InputForm.jsx) dispatches each change to the [Redux Toolkit slice](src/slice/gasSlice.js). The slice multiplies consumption by the fixed rate and the form displays the result in euros.
